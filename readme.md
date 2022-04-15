@@ -14,3 +14,7 @@
 ## passport.js for google OAuth2
     npm i passport
     npm install passport-google-oauth20
+
+## oauth behind proxy workaround
+    https://stackoverflow.com/questions/33639337/use-passport-js-behind-corporate-firewall-for-facebook-strategy?answertab=oldest#tab-top
+    
