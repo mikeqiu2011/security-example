@@ -10,3 +10,7 @@
     X-Power-By is hidden
     X-XSS-protection
     content-security policy -- block user from saving script to our server
+
+## passport.js for google OAuth2
+    npm i passport
+    npm install passport-google-oauth20
