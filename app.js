@@ -15,6 +15,18 @@ function checkLoggedIn(req, res, next) {
 
 }
 
+app.get('/auth/google', (req, res) => {
+
+})
+
+app.get('/auth/google/callback', (req, res) => {
+
+})
+
+app.get('/auth/logout', (req, res) => {
+
+})
+
 app.get('/secret', checkLoggedIn, (req, res) => {  // only check login for protected endpoint
     return res.json({ msg: 'your personal secret value is 35' })
 })
