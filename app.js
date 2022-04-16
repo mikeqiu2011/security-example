@@ -27,6 +27,16 @@ function verifyCallback(accessToken, refreshToken, profile, done) {
 
 passport.use(new Strategy(AUTH_OPTIONS, verifyCallback))
 
+// save session to cookie directly
+passport.serializeUser((user, done) => {
+    done(null, user)
+})
+
+// load session from cookie directly
+passport.deserializeUser((obj, done) => {
+    done(null, obj)
+})
+
 const app = express()
 
 app.use(helmet()) // add security middleware at the top of all mw and routes
@@ -38,6 +48,7 @@ app.use(cookieSession({
 }))
 
 app.use(passport.initialize())
+app.use(passport.session())
 
 function checkLoggedIn(req, res, next) {
     const isLoggedIn = true // TODO
@@ -55,7 +66,7 @@ app.get('/auth/google', passport.authenticate('google', {
 app.get('/auth/google/callback', passport.authenticate('google', {
     failureRedirect: '/failure',
     successRedirect: '/',
-    session: false,   // we will come back to this later
+    session: true,
 }), (req, res) => {
     console.log('Google called us back');
 }
