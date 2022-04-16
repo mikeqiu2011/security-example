@@ -29,12 +29,16 @@ passport.use(new Strategy(AUTH_OPTIONS, verifyCallback))
 
 // save session to cookie directly
 passport.serializeUser((user, done) => {
-    done(null, user)
+    // done(null, user) // instead of saving all data into cookie, we can just save id
+    done(null, user.id)
 })
 
 // load session from cookie directly
-passport.deserializeUser((obj, done) => {
-    done(null, obj)
+passport.deserializeUser((id, done) => {
+    User.findById(id).then(user => {
+        done(null, user)  // if we use server side session, the we can get user info by id
+    })
+    // done(null, obj)
 })
 
 const app = express()
