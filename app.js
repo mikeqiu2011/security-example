@@ -35,10 +35,10 @@ passport.serializeUser((user, done) => {
 
 // load session from cookie directly
 passport.deserializeUser((id, done) => {
-    User.findById(id).then(user => {
-        done(null, user)  // if we use server side session, the we can get user info by id
-    })
-    // done(null, obj)
+    // User.findById(id).then(user => {
+    //     done(null, user)  // if we use server side session, the we can get user info by id
+    // })
+    done(null, id)
 })
 
 const app = express()
